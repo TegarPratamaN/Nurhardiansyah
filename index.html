@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>WebGIS</Kebencanaan_Banjir_TegarPratamaNurhardiansyah>
+    <title>KebencanaanKaryaTEGAR</title>
     <link rel="stylesheet" href="library/leaflet/leaflet.css" />
     <link rel="stylesheet" href="css/style.css" />
     <script src="library/leaflet/leaflet.js"></script>
@@ -13,15 +13,13 @@
 <body>
     <div id="map">
         <script>
-            var map = L.map('map').setView([-7.888293, 110.180838], 10);
+            var map = L.map('map').setView([-7.8556982, 110.1526851], 13);
 
             var baseLayers = {
                 'Esri WorldTopoMap': L.tileLayer.provider('Esri.WorldTopoMap'),
                 'Esri WorldImagery': L.tileLayer.provider('Esri.WorldImagery').addTo(map),
                 'OSM Default': L.tileLayer.provider('OpenStreetMap.DE'),
                 'OSM France': L.tileLayer.provider('OpenStreetMap.France')
-                'USGS USImageryTopo': L.tileLayer.provider('USGS.USImageryTopo')
-                'Waymarked Trails Skating': L.tileLayer.provider('WaymarkedTrails.skating')
             };
 
 
@@ -38,17 +36,17 @@
                 },
                 onEachFeature: function( feature, layer ){
                     layer.bindPopup(
-                        "Keterangan : " + "<left>" + feature.properties.Keterangan+ "</left>" + "<br>" +
-                        "Luas :" + "<left>" + feature.properties.Shape_Area + "</left>" + " m2"
+                        "Keterangan: " + "<left>" + feature.properties.Keterangan + "</left>" + "<br>" +
+                        "Luas_Area :" + "<left>" + feature.properties.Luas_Area + "</left>" + " m2"
                         )
                 }
             });
-            $.getJSON("data/Rawan_Banjir_Sebagian_KulonProgo.json", function(data) {
-                AreaRawanBanjir.addData(data);
+            $.getJSON("data/*KeadaanRawanBanjirKulonPROG.json", function(data) {
+                KeadaanRawanBanjir.addData(data);
             });
 
-			/* Merubah Tampilan Warna Berdasar Atribut Klas Banjir */
-			var KlasBanjir = {
+			/* Merubah Tampilan Warna Berdasar Atribut TingkatRawanBanjir */
+			var Keterangan = {
 				"Sangat Rendah":"#d3f0f2",
 				"Rendah":"#9bd1e8",
 				"Sedang":"#6c76cc",
@@ -57,7 +55,7 @@
 			};
 
             var mapLayers = {
-                'Area Rawan Banjir': AreaRawanBanjir
+                'TingkatRawanBanjir': AreaRawanBanjir
             };
 
             L.control.layers(baseLayers, mapLayers).addTo(map);
